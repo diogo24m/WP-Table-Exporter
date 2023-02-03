@@ -17,7 +17,7 @@ function exportExcel(arr) {
     let url = "data:application/csv," + encodeURIComponent(arr.join('\n'));
     let a = document.createElement("a");
     a.setAttribute("href", url);
-    a.setAttribute("download", "somedata.csv");
+    a.setAttribute("download", "email-list.csv");
     a.click();
 }
 
