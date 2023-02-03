@@ -14,29 +14,12 @@ function getTable() {
 }
 
 function exportExcel(arr) {
-    console.log(arr)
     let url = "data:application/csv," + encodeURIComponent(arr.join(','));
     let a = document.createElement("a");
     a.setAttribute("href", url);
     a.setAttribute("download", "somedata.csv");
-    //document.body.appendChild(a);
     a.click();
 }
-
-waitForElementToDisplay("table.wp-list-table", function () {
-
-    const a = document.createElement('a');
-
-    a.addEventListener('click', function handleClick(event) {
-        console.log('element clicked 🎉🎉🎉', event);
-        getTable();
-    });
-    a.textContent = 'Exportar';
-    a.classList = 'button';
-
-    let btn = document.getElementById('post-query-submit');
-    btn.parentNode.insertBefore(a, btn.nextSibling);
-}, 1000, 9000);
 
 function waitForElementToDisplay(selector, callback, checkFrequencyInMs, timeoutInMs) {
     var startTimeInMs = Date.now();
@@ -54,3 +37,14 @@ function waitForElementToDisplay(selector, callback, checkFrequencyInMs, timeout
         }
     })();
 }
+
+waitForElementToDisplay("table.wp-list-table", function () {
+    const a = document.createElement('a');
+
+    a.addEventListener('click', getTable);
+    a.textContent = 'Exportar';
+    a.classList = 'button';
+
+    let btn = document.getElementById('post-query-submit');
+    btn.parentNode.insertBefore(a, btn.nextSibling);
+}, 1000, 9000);
