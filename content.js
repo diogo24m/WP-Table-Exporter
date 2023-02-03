@@ -14,7 +14,7 @@ function getTable() {
 }
 
 function exportExcel(arr) {
-    let url = "data:application/csv," + encodeURIComponent(arr.join(','));
+    let url = "data:application/csv," + encodeURIComponent(arr.join('\n'));
     let a = document.createElement("a");
     a.setAttribute("href", url);
     a.setAttribute("download", "somedata.csv");
